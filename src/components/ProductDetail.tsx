@@ -82,7 +82,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onBack, onAddToC
             <div className="space-y-4 pt-6">
               <button
                 onClick={() => onAddToCart(product)}
-                className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 text-white py-4 rounded-lg font-semibold hover:from-cyan-600 hover:to-purple-600 transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 text-lg"
+                className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white py-4 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 text-lg"
               >
                 <Plus className="h-6 w-6" />
                 <span>Add to Cart</span>
@@ -92,7 +92,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onBack, onAddToC
                 <button className="border border-gray-600 text-gray-300 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors">
                   Add to Wishlist
                 </button>
-                <button className="border border-cyan-400 text-cyan-400 py-3 rounded-lg font-semibold hover:bg-cyan-400 hover:text-gray-900 transition-all duration-300">
+                <button className="border border-blue-400 text-blue-400 py-3 rounded-lg font-semibold hover:bg-blue-400 hover:text-gray-900 transition-all duration-300">
                   Compare
                 </button>
               </div>
@@ -106,11 +106,11 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onBack, onAddToC
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-gray-400">Shipping:</span>
-                <span className="text-gray-300">Free shipping on orders over $50</span>
+                <span className="text-gray-300">Free shipping on orders over $100</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-gray-400">Warranty:</span>
-                <span className="text-gray-300">1 Year Manufacturer Warranty</span>
+                <span className="text-gray-300">2-3 Year Manufacturer Warranty</span>
               </div>
             </div>
           </div>

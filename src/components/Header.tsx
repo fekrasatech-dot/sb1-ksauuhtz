@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShoppingCart, Search, Menu, X, Gamepad2 } from 'lucide-react';
+import { ShoppingCart, Search, Menu, X, Monitor } from 'lucide-react';
 
 interface HeaderProps {
   cartItemsCount: number;
@@ -24,10 +24,10 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   const categories = [
     { id: 'all', name: 'All Products' },
-    { id: 'games', name: 'Games' },
-    { id: 'consoles', name: 'Consoles' },
-    { id: 'accessories', name: 'Accessories' },
-    { id: 'merchandise', name: 'Merchandise' }
+    { id: 'prebuilt', name: 'Pre-built PCs' },
+    { id: 'components', name: 'Components' },
+    { id: 'peripherals', name: 'Peripherals' },
+    { id: 'accessories', name: 'Accessories' }
   ];
 
   return (
@@ -36,9 +36,9 @@ const Header: React.FC<HeaderProps> = ({
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <Gamepad2 className="h-8 w-8 text-cyan-400" />
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-              K-O Gaming
+            <Monitor className="h-8 w-8 text-cyan-400" />
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+              K-O Tech
             </h1>
           </div>
 
@@ -66,7 +66,7 @@ const Header: React.FC<HeaderProps> = ({
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               <input
                 type="text"
-                placeholder="Search games..."
+                placeholder="Search PC components..."
                 value={searchTerm}
                 onChange={(e) => onSearchChange(e.target.value)}
                 className="w-64 pl-10 pr-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-cyan-400 text-white placeholder-gray-400"
@@ -108,7 +108,7 @@ const Header: React.FC<HeaderProps> = ({
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               <input
                 type="text"
-                placeholder="Search games..."
+                placeholder="Search PC components..."
                 value={searchTerm}
                 onChange={(e) => onSearchChange(e.target.value)}
                 className="w-full pl-10 pr-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-cyan-400 text-white placeholder-gray-400"

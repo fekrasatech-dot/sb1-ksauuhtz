@@ -49,7 +49,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose, items, onUpdateQuantity })
               <div className="flex flex-col items-center justify-center h-full text-center">
                 <ShoppingBag className="h-16 w-16 text-gray-600 mb-4" />
                 <h3 className="text-lg font-semibold text-gray-400 mb-2">Your cart is empty</h3>
-                <p className="text-gray-500">Add some awesome gaming gear to get started!</p>
+                <p className="text-gray-500">Add some premium PC components to get started!</p>
               </div>
             ) : (
               <div className="space-y-4">

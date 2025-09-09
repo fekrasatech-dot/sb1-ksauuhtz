@@ -13,11 +13,11 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, onProductClick, onA
     <section className="py-16 bg-gray-900">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
             Featured Products
           </h2>
           <p className="text-gray-400 text-lg">
-            Discover our handpicked selection of gaming essentials
+            Discover our handpicked selection of premium PC components
           </p>
         </div>
 
@@ -79,7 +79,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, onProductClick, onA
                   </span>
                   <button
                     onClick={() => onAddToCart(product)}
-                    className="bg-gradient-to-r from-cyan-500 to-purple-500 text-white px-4 py-2 rounded-lg hover:from-cyan-600 hover:to-purple-600 transition-all duration-300 text-sm font-semibold"
+                    className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-4 py-2 rounded-lg hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 text-sm font-semibold"
                   >
                     Add to Cart
                   </button>

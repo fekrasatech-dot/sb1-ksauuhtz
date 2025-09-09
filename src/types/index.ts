@@ -3,7 +3,7 @@ export interface Product {
   name: string;
   price: number;
   image: string;
-  category: 'games' | 'consoles' | 'accessories' | 'merchandise';
+  category: 'prebuilt' | 'components' | 'peripherals' | 'accessories';
   rating: number;
   reviews: number;
   description: string;
