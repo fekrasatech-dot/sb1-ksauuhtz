@@ -1,16 +1,35 @@
 import React from 'react';
 import { X, Plus, Minus, ShoppingBag } from 'lucide-react';
 import { CartItem } from '../types';
+import { useAuth } from '../contexts/AuthContext';
 
 interface CartProps {
   isOpen: boolean;
   onClose: () => void;
   items: CartItem[];
   onUpdateQuantity: (id: number, quantity: number) => void;
+  onCheckout: () => void;
+  onAuthRequired: () => void;
 }
 
-const Cart: React.FC<CartProps> = ({ isOpen, onClose, items, onUpdateQuantity }) => {
+const Cart: React.FC<CartProps> = ({ 
+  isOpen, 
+  onClose, 
+  items, 
+  onUpdateQuantity, 
+  onCheckout, 
+  onAuthRequired 
+}) => {
+  const { user } = useAuth();
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  const handleCheckout = () => {
+    if (!user) {
+      onAuthRequired();
+      return;
+    }
+    onCheckout();
+  };
 
   return (
     <>
@@ -109,8 +128,11 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose, items, onUpdateQuantity })
                 <span className="text-cyan-400">${total.toFixed(2)}</span>
               </div>
               
-              <button className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 text-white py-3 rounded-lg font-semibold hover:from-cyan-600 hover:to-purple-600 transition-all duration-300">
-                Checkout
+              <button 
+                onClick={handleCheckout}
+                className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 text-white py-3 rounded-lg font-semibold hover:from-cyan-600 hover:to-purple-600 transition-all duration-300"
+              >
+                {user ? 'Checkout' : 'Sign In to Checkout'}
               </button>
               
               <button

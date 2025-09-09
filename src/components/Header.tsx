@@ -1,5 +1,6 @@
 import React from 'react';
-import { ShoppingCart, Search, Menu, X, Monitor } from 'lucide-react';
+import { ShoppingCart, Search, Menu, X, Monitor, User, LogOut } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
 
 interface HeaderProps {
   cartItemsCount: number;
@@ -10,6 +11,8 @@ interface HeaderProps {
   selectedCategory: string;
   onCategoryChange: (category: string) => void;
   isMobileMenuOpen: boolean;
+  onAuthClick: () => void;
+  onCategoryPageClick: (category: string) => void;
 }
 
 const Header: React.FC<HeaderProps> = ({
@@ -20,8 +23,12 @@ const Header: React.FC<HeaderProps> = ({
   onSearchChange,
   selectedCategory,
   onCategoryChange,
-  isMobileMenuOpen
+  isMobileMenuOpen,
+  onAuthClick,
+  onCategoryPageClick
 }) => {
+  const { user, logout } = useAuth();
+
   const categories = [
     { id: 'all', name: 'All Products' },
     { id: 'prebuilt', name: 'Pre-built PCs' },
@@ -47,7 +54,13 @@ const Header: React.FC<HeaderProps> = ({
             {categories.map(category => (
               <button
                 key={category.id}
-                onClick={() => onCategoryChange(category.id)}
+                onClick={() => {
+                  if (category.id === 'all') {
+                    onCategoryChange(category.id);
+                  } else {
+                    onCategoryPageClick(category.id);
+                  }
+                }}
                 className={`px-3 py-2 text-sm font-medium transition-colors hover:text-cyan-400 ${
                   selectedCategory === category.id
                     ? 'text-cyan-400 border-b-2 border-cyan-400'
@@ -86,6 +99,30 @@ const Header: React.FC<HeaderProps> = ({
               )}
             </button>
 
+            {/* User Menu */}
+            {user ? (
+              <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-2 text-gray-300">
+                  <User className="h-5 w-5" />
+                  <span className="text-sm">{user.name}</span>
+                </div>
+                <button
+                  onClick={logout}
+                  className="p-2 hover:bg-gray-800 rounded-lg transition-colors"
+                  title="Logout"
+                >
+                  <LogOut className="h-5 w-5 text-gray-300" />
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={onAuthClick}
+                className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-4 py-2 rounded-lg hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 text-sm font-semibold"
+              >
+                Sign In
+              </button>
+            )}
+
             {/* Mobile Menu Toggle */}
             <button
               onClick={onMenuClick}
@@ -121,7 +158,11 @@ const Header: React.FC<HeaderProps> = ({
                 <button
                   key={category.id}
                   onClick={() => {
-                    onCategoryChange(category.id);
+                    if (category.id === 'all') {
+                      onCategoryChange(category.id);
+                    } else {
+                      onCategoryPageClick(category.id);
+                    }
                     onMenuClick();
                   }}
                   className={`text-left px-3 py-2 text-sm font-medium transition-colors hover:text-cyan-400 ${
@@ -134,6 +175,38 @@ const Header: React.FC<HeaderProps> = ({
                 </button>
               ))}
             </nav>
+
+            {/* Mobile User Menu */}
+            <div className="border-t border-gray-700 pt-4 mt-4">
+              {user ? (
+                <div className="space-y-2">
+                  <div className="flex items-center space-x-2 text-gray-300 px-3 py-2">
+                    <User className="h-5 w-5" />
+                    <span>{user.name}</span>
+                  </div>
+                  <button
+                    onClick={() => {
+                      logout();
+                      onMenuClick();
+                    }}
+                    className="flex items-center space-x-2 text-gray-300 hover:text-red-400 transition-colors px-3 py-2 w-full text-left"
+                  >
+                    <LogOut className="h-5 w-5" />
+                    <span>Logout</span>
+                  </button>
+                </div>
+              ) : (
+                <button
+                  onClick={() => {
+                    onAuthClick();
+                    onMenuClick();
+                  }}
+                  className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-4 py-2 rounded-lg hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 text-sm font-semibold"
+                >
+                  Sign In
+                </button>
+              )}
+            </div>
           </div>
         )}
       </div>
